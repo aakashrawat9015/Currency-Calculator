@@ -5,21 +5,24 @@ const Inputbox = ({
   onAmountChange,
   onCurrencyChange,
   currencyOptions = [],
-  selectCurrency ,
+  selectCurrency,
   convert,
   convertedAmount,
   toCurrency,
-  onToCurrencyChange
+  onToCurrencyChange,
+  swap
 }) => {
   const amountInputId = useId();
   const toInputId = useId();
 
   // console.log("Options:", currencyOptions[]);
-// console.log("Selected:", selectCurrency);
+  // console.log("Selected:", selectCurrency);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="w-full max-w-md bg-gray-800 p-6 rounded-lg shadow-lg space-y-6">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#868F96] to-[#596164] text-white">
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-md p-5 rounded-xl shadow-4xl border border-white/30 space-y-6">
+
+
 
         {/* From Section */}
         <div>
@@ -27,6 +30,7 @@ const Inputbox = ({
           <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden border border-gray-600">
             <input
               type="number"
+              min={0}
               id={amountInputId}
               value={amount}
               onChange={(e) => onAmountChange(Number(e.target.value))}
@@ -42,6 +46,15 @@ const Inputbox = ({
               ))}
             </select>
           </div>
+        </div>
+
+        {/* Swap Button */}
+        <div className="flex justify-center ">
+          <button className="px-4 py-2 bg-yellow-500 rounded-full border border-blue-500
+           hover:bg-yellow-600 transition duration-300 ease-in-out focus:outline-none focus:ring-yellow-400 "
+            onClick={swap}>
+            🔄 Swap
+          </button>
         </div>
 
         {/* To Section */}
@@ -68,13 +81,13 @@ const Inputbox = ({
         </div>
 
         {/* Convert Button */}
-        <button
+        {/* <button
           type="button"
           onClick={convert}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
         >
           Convert
-        </button>
+        </button> */}
 
       </div>
     </div>
